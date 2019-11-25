@@ -169,7 +169,11 @@ void WindowImage::applyFast(int threshold, bool nonMaxSuppression) {
 	
 	vector<KeyPoint> keypoints;
 	float time = (float) getTickCount();
-	FAST(imageGrey, keypoints, threshold, nonMaxSuppression);
+	// Original:
+	// FAST(imageGrey, keypoints, threshold, nonMaxSuppression);
+	const int fast_type = FastFeatureDetector::TYPE_7_12;
+	// FAST types: FastFeatureDetector::TYPE_9_16, FastFeatureDetector::TYPE_7_12, FastFeatureDetector::TYPE_5_8
+	FAST(imageGrey, keypoints, threshold, nonMaxSuppression, fast_type);
 	
 	mImageTime = mLocale->toString((float)((getTickCount()-time)*1000/getTickFrequency()),'f', 2);
 	mImageKeypoints = mLocale->toString((float)keypoints.size(),'f', 0);
@@ -190,7 +194,7 @@ void WindowImage::applyFast(int threshold, bool nonMaxSuppression) {
 
 
 
-void WindowImage::applySift(double threshold, double edgeThreshold, int nOctaves, int nOctaveLayers, bool showOrientation) {
+void WindowImage::applySift(double threshold, double edgeThreshold, int nFeatures, int nOctaveLayers, bool showOrientation) {
 	mFeatureType = WindowImage::sift;
 	if (mModified)
 		mPixmap = mPixmapOriginal;
@@ -201,7 +205,7 @@ void WindowImage::applySift(double threshold, double edgeThreshold, int nOctaves
 	
 	vector<KeyPoint> keypoints;
 	float time = (float) getTickCount();
-	Ptr<Feature2D> feature = SIFT::create(nOctaveLayers, nOctaves, threshold, edgeThreshold);
+	Ptr<Feature2D> feature = SIFT::create(nFeatures, nOctaveLayers, threshold, edgeThreshold);
 	feature->detect(imageGrey, keypoints);
 	
 	mImageTime = mLocale->toString((float)((getTickCount()-time)*1000/getTickFrequency()),'f', 2);

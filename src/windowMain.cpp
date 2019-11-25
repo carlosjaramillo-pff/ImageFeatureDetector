@@ -168,7 +168,7 @@ WindowMain::WindowMain() : mTotalImages(0) {
 	mUISift.uiPushButtonShowOrientation->setChecked(mSettings->value("sift/showOrientation", true).toBool());
 	connect(mUISift.uiDoubleSpinBoxThreshold, &QSpinBox::editingFinished, this, &WindowMain::saveSiftParams);
 	connect(mUISift.uiDoubleSpinBoxEdgeThreshold, &QSpinBox::editingFinished, this, &WindowMain::saveSiftParams);
-	connect(mUISift.uiSpinBoxOctaves, &QSpinBox::editingFinished, this, &WindowMain::saveSiftParams);
+	connect(mUISift.uiSpinBoxFeatures, &QSpinBox::editingFinished, this, &WindowMain::saveSiftParams);
 	connect(mUISift.uiSpinBoxLayers, &QSpinBox::editingFinished, this, &WindowMain::saveSiftParams);
 	connect(mUISift.uiPushButtonShowOrientation, &QPushButton::toggled, this, &WindowMain::saveSiftParams);
 	connect(mUISift.uiButtonBox->button(QDialogButtonBox::Apply), &QAbstractButton::clicked, this, &WindowMain::applySift);
@@ -420,7 +420,7 @@ void WindowMain::showSiftToolBar() {
 void WindowMain::resetSiftParams() {
 	mUISift.uiDoubleSpinBoxThreshold->setValue(0.014);
 	mUISift.uiDoubleSpinBoxEdgeThreshold->setValue(10.0);
-	mUISift.uiSpinBoxOctaves->setValue(3);
+	mUISift.uiSpinBoxFeatures->setValue(0);
 	mUISift.uiSpinBoxLayers->setValue(1);
 	mUISift.uiPushButtonShowOrientation->setChecked(true);
 	saveSiftParams();
@@ -446,7 +446,7 @@ void WindowMain::applySift() {
 void WindowMain::saveSiftParams() {
 	mSettings->setValue("sift/threshold", mUISift.uiDoubleSpinBoxThreshold->value());
 	mSettings->setValue("sift/edgeThreshold", mUISift.uiDoubleSpinBoxEdgeThreshold->value());
-	mSettings->setValue("sift/features", mUISift.uiSpinBoxOctaves->value());
+	mSettings->setValue("sift/features", mUISift.uiSpinBoxFeatures->value());
 	mSettings->setValue("sift/layers", mUISift.uiSpinBoxLayers->value());
 	mSettings->setValue("sift/showOrientation", mUISift.uiPushButtonShowOrientation->isChecked());
 }

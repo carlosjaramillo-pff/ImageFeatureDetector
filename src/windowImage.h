@@ -31,7 +31,7 @@ class WindowImage : public QScrollArea, Ui::windowImage {
 	void resetImage();
 	void applyHarris(int sobelApertureSize, int harrisApertureSize, double kValue, int threshold, bool showProcessedImage);
 	void applyFast(int threshold, bool nonMaxSuppression);
-	void applySift(double threshold, double edgeThreshold, int nOctaves, int nOctaveLayers, bool showOrientation);
+	void applySift(double threshold, double edgeThreshold, int nFeatures, int nOctaveLayers, bool showOrientation);
 	void applySurf(double threshold, int nOctaves, int nOctaveLayers, bool showOrientation);
 
 	enum windowType {normal=0, duplicated=1, fromWebcam=2, do4=3};
