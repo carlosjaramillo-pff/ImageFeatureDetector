@@ -84,7 +84,7 @@ void WindowCaptureWebcam::closeEvent(QCloseEvent* closeEvent) {
 
 void WindowCaptureWebcam::compute() {
 	mCamera >> mImageRT;
-	cvtColor(mImageRT, mImageRT, CV_BGR2RGB);
+	cvtColor(mImageRT, mImageRT, COLOR_BGR2RGB);
 	uiLabelRealTime->setPixmap(QPixmap::fromImage(QImage(mImageRT.data, mImageRT.cols, mImageRT.rows, mImageRT.step, QImage::Format_RGB888))); // With RGB32 doesn't work
 // 	uiLabelRealTime->setPixmap(QPixmap::fromImage(QImage(mImageRT.data, mImageRT.cols, mImageRT.rows, mImageRT.step, QImage::Format_RGB888).rgbSwapped()));
 }

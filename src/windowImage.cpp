@@ -117,7 +117,7 @@ void WindowImage::applyHarris(int sobelApertureSize, int harrisApertureSize, dou
 	
 	Mat image(mImage->height(), mImage->width(), CV_8UC4, mImage->bits(), mImage->bytesPerLine()); // With CV_8UC3 it doesn't work
 	Mat imageGrey(mImage->height(), mImage->width(), CV_8UC1);
-	cvtColor(image, imageGrey, CV_RGB2GRAY);
+	cvtColor(image, imageGrey, COLOR_RGB2GRAY);
 	
 	Mat imageHarris(mImage->height(), mImage->width(), CV_8UC1);
 	float time = (float) getTickCount();
@@ -165,13 +165,13 @@ void WindowImage::applyFast(int threshold, bool nonMaxSuppression) {
 	
 	Mat image(mImage->height(), mImage->width(), CV_8UC4, mImage->bits(), mImage->bytesPerLine()); // With CV_8UC3 it doesn't work
 	Mat imageGrey(mImage->height(), mImage->width(), CV_8UC1);
-	cvtColor(image, imageGrey, CV_RGB2GRAY);
+	cvtColor(image, imageGrey, COLOR_RGB2GRAY);
 	
 	vector<KeyPoint> keypoints;
 	float time = (float) getTickCount();
 	// Original:
 	// FAST(imageGrey, keypoints, threshold, nonMaxSuppression);
-	const int fast_type = FastFeatureDetector::TYPE_7_12;
+	const FastFeatureDetector::DetectorType fast_type = FastFeatureDetector::TYPE_7_12;
 	// FAST types: FastFeatureDetector::TYPE_9_16, FastFeatureDetector::TYPE_7_12, FastFeatureDetector::TYPE_5_8
 	FAST(imageGrey, keypoints, threshold, nonMaxSuppression, fast_type);
 	
@@ -201,7 +201,7 @@ void WindowImage::applySift(double threshold, double edgeThreshold, int nFeature
 
 	Mat image(mImage->height(), mImage->width(), CV_8UC4, mImage->bits(), mImage->bytesPerLine()); // With CV_8UC3 it doesn't work
 	Mat imageGrey(mImage->height(), mImage->width(), CV_8UC1);
-	cvtColor(image, imageGrey, CV_RGB2GRAY);
+	cvtColor(image, imageGrey, COLOR_RGB2GRAY);
 	
 	vector<KeyPoint> keypoints;
 	float time = (float) getTickCount();
@@ -245,7 +245,7 @@ void WindowImage::applySurf(double threshold, int nOctaves, int nOctaveLayers, b
 	
 	Mat image(mImage->height(), mImage->width(), CV_8UC4, mImage->bits(), mImage->bytesPerLine()); // With CV_8UC3 it doesn't work
 	Mat imageGrey(mImage->height(), mImage->width(), CV_8UC1);
-	cvtColor(image, imageGrey, CV_RGB2GRAY);
+	cvtColor(image, imageGrey, COLOR_RGB2GRAY);
 	
 	vector<KeyPoint> keypoints;
 	float time = getTickCount();

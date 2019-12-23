@@ -94,7 +94,7 @@ void WindowFastRealTime::compute() {
 	mCamera >> mImageRT;
 	if (mDetecting) {
 		Mat mImageGrey(mImageRT.rows, mImageRT.cols, CV_8UC1);
-		cvtColor(mImageRT, mImageGrey, CV_RGB2GRAY);
+		cvtColor(mImageRT, mImageGrey, COLOR_RGB2GRAY);
 		mTime = (float) getTickCount();
 		FAST(mImageGrey, mKeypoints, mSettings->value("fastRT/threshold", true).toInt(), mSettings->value("fastRT/nonMaxSuppression", true).toBool());
 		uiLabelTime->setText(QString("Detecting Time: ").append(mLocale->toString((float)((getTickCount()-mTime)/(getTickFrequency()*1000)),'f', 2).append(" ms")));

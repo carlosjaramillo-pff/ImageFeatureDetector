@@ -20,6 +20,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(OpenCV REQUIRED)
+
 # find_package(Threads REQUIRED) # http://stackoverflow.com/questions/1620918/cmake-and-libpthread (if not 'libpthread.so.0: DSO missing from command line' error will be thrown at linking time)
 # find_package(ZLIB REQUIRED) # http://stackoverflow.com/questions/6173915/need-help-trying-to-make-cmake-find-third-party-libraries
 
